@@ -1,0 +1,16 @@
+{
+  "name": "adminsphere",
+  "version": "1.0.0",
+  "description": "AdminSphere - Enterprise Organization & Operations Management Platform (MERN)",
+  "private": true,
+  "scripts": {
+    "server": "npm --prefix server run dev",
+    "client": "npm --prefix client run dev",
+    "seed": "npm --prefix server run seed",
+    "install:all": "npm install && npm --prefix server install && npm --prefix client install",
+    "build": "npm --prefix client run build"
+  },
+  "keywords": ["mern", "admin", "rbac", "dashboard", "express", "react", "mongodb"],
+  "author": "AdminSphere Team",
+  "license": "ISC"
+}
