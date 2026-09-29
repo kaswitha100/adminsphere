@@ -23,13 +23,13 @@ app.use(
         process.env.CLIENT_URL
       ].filter(Boolean);
 
-      let isVercel = false;
+      let isAllowedDomain = false;
       try {
         const host = new URL(origin).hostname;
-        if (host.endsWith('.vercel.app')) isVercel = true;
+        if (host.endsWith('.vercel.app') || host.endsWith('.github.io')) isAllowedDomain = true;
       } catch (e) {}
 
-      if (allowedOrigins.indexOf(origin) !== -1 || isVercel || process.env.NODE_ENV === 'development') {
+      if (allowedOrigins.indexOf(origin) !== -1 || isAllowedDomain || process.env.NODE_ENV === 'development') {
         return callback(null, true);
       }
       return callback(new Error('CORS policy: Not allowed by origin'));
