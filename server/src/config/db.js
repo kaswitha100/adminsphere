@@ -22,6 +22,9 @@ const connectDB = async () => {
     try {
       const { MongoMemoryServer } = require('mongodb-memory-server');
       mongodInstance = await MongoMemoryServer.create({
+        binary: {
+          version: process.env.MONGOMS_VERSION || '7.0.14'
+        },
         instance: {
           dbName: 'adminsphere',
           launchTimeout: 120000
