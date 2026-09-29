@@ -1,9 +1,14 @@
 import axios from 'axios';
  
-// Resolve base URL from VITE_API_URL env variable or fall back to local proxy '/api/v1'
+// Resolve base URL from VITE_API_URL env variable or fall back to production Render backend / local proxy
 const getBaseURL = () => {
   const envUrl = import.meta.env.VITE_API_URL;
-  if (!envUrl) return '/api/v1';
+  if (!envUrl) {
+    if (typeof window !== 'undefined' && window.location.hostname !== 'localhost' && window.location.hostname !== '127.0.0.1') {
+      return 'https://adminsphere-api.onrender.com/api/v1';
+    }
+    return '/api/v1';
+  }
   const cleanUrl = envUrl.trim().replace(/\/+$/, '');
   return cleanUrl.endsWith('/api/v1') ? cleanUrl : `${cleanUrl}/api/v1`;
 };
